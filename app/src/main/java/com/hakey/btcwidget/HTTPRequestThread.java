@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.Calendar;
 
 class HTTPRequestThread extends Thread{
-    private static final String urlString = "https://btc-e.nz/api/3/ticker/btc_usd";
+    private static final String urlString = "https://api.coindesk.com/v1/bpi/currentprice.json";
 
     String getInfoString() {
         return output;
