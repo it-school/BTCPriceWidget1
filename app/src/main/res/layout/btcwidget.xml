@@ -13,14 +13,11 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_margin="8dp"
-        android:background="#09C"
+        android:background="@drawable/exchange"
         android:contentDescription="@string/appwidget_text"
         android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold|italic"
         />
-
-
-
 </RelativeLayout>
