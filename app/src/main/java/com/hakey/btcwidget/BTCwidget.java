@@ -31,7 +31,7 @@ public class BTCwidget extends AppWidgetProvider {
         thread.start();
         try {
             while (true) {
-                Thread.sleep(300);
+                Thread.sleep(httpsDelayMs);
                 if(!thread.isAlive()) {
                     output = thread.getInfoString();
                     break;

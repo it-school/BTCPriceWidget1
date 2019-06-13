@@ -8,8 +8,9 @@ class JSONParser {
     static String getPrice(String s) throws JSONException {
         String price;
         JSONObject obj = new JSONObject(s);
-        JSONObject pairObj = obj.getJSONObject("btc_usd");
-        price = pairObj.getString("last");
+        JSONObject pairObj = obj.getJSONObject("bpi");
+        JSONObject newObj = pairObj.getJSONObject("USD");
+        price = newObj.getString("rate");
 
         return price;
     }

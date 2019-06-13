@@ -1,5 +1,8 @@
 package com.hakey.btcwidget;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
 
@@ -11,28 +14,32 @@ class HTTPRequestThread extends Thread{
     }
 
     private String output = "";
-
+    int cp = 0;
     private void requestPrice() {
 
         try {
             URL url = new URL(urlString);
-            // HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            // con.setRequestMethod("GET");
-            //BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
-
             StringBuilder response = new StringBuilder();
-            response.append("{\"btc_usd\":{\"high\":3988.00,\"low\":3956.99,\"avg\":3980.00,\"vol\":3774491.17766,\"vol_cur\":4368.01172,\"last\":3981.60,\"buy\":3871,\"sell\":3981.701,\"updated\":1482754417}}");
- /*
+
+
+            response.append("{\"time\":{\"updated\":\"Jun 13, 2019 16:19:00 UTC\",\"updatedISO\":\"2019-06-13T16:19:00+00:00\",\"updateduk\":\"Jun 13, 2019 at 17:19 BST\"},\"disclaimer\":\"This data was produced from the CoinDesk Bitcoin Price Index (USD). Non-USD currency data converted using hourly conversion rate from openexchangerates.org\",\"chartName\":\"Bitcoin\",\"bpi\":{\"USD\":{\"code\":\"USD\",\"symbol\":\"&#36;\",\"rate\":\"8,175.0933\",\"description\":\"United States Dollar\",\"rate_float\":8175.0933},\"GBP\":{\"code\":\"GBP\",\"symbol\":\"&pound;\",\"rate\":\"6,448.8488\",\"description\":\"British Pound Sterling\",\"rate_float\":6448.8488},\"EUR\":{\"code\":\"EUR\",\"symbol\":\"&euro;\",\"rate\":\"7,251.0871\",\"description\":\"Euro\",\"rate_float\":7251.0871}}}");
+
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
+                System.out.println(response.toString());
             }
             in.close();
-*/
+
             output = "Price: " + JSONParser.getPrice(response.toString()) + "\n" + getTimeStamp();
+            System.out.println(output);
 
         } catch (Exception e) {
             output = e.toString();
+            System.out.println(output);
         }
     }
 
